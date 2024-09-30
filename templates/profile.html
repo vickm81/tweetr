@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% include 'navbar.html' %}
+
+{% block content %}
+
+    <h2>{{ user.username }}'s Profile</h2>
+
+    <div class="profile-info">
+        <img src="{{user.profile_picture }}" alt="Profile Picture" width="150" height="150" >
+        <p>Gender: {{ user.gender }}</p>
+    </div>
+
+    <h3>Tweets</h3>
+        {% for tweet in tweets %}
+        <div class="alert alert-secondary" role="alert">
+            {{ tweet.content }} ({{ tweet.timestamp }})
+        </div>
+        {% endfor %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% include 'navbar.html' %}
+
+{% block content %}
+
+<br><br>
+    <span>Welcome, {{ g.user.username }}</span>
+    <br>
+    <form method="POST" action="{{ url_for('tweet') }}">
+        <textarea class="form-control" name="content" placeholder="What's happening?" maxlength="280" required></textarea>
+        <br>
+        <button class="btn btn-secondary"  type="submit">Tweet</button>
+    </form>
+    <br><br>
+    <h3>Timeline</h3>
+        {% for tweet in tweets %}
+        <div class="alert alert-secondary" role="alert">
+            <a href="{{ url_for('profile', user_id=tweet.author.id) }}">{{ tweet.author.username }}</a>: {{ tweet.content }} ({{ tweet.timestamp }})
+        </div>
+        {% endfor %}
+{% endblock %}
